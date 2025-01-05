@@ -1,0 +1,56 @@
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: Tahoma;
+}
+
+.center {
+    background-color: white;
+    border: 1px solid rgb(175, 166, 166);
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    margin-top: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
+hr {
+    background-color: rgb(226, 221, 221);
+}
+
+label {
+    display: block;
+
+}
+
+input {
+    margin-top: 5px;
+
+    margin-bottom: 5px;
+    display: block;
+    width: 98%;
+    border-radius: 20px;
+    background-color: rgba(204, 211, 211, 0.74);
+    border: 0px;
+    height: 30px;
+    padding: 3px 10px;
+}
+
+fieldset {
+    border: none;
+    font-weight: bolder;
+}
+
+#submit {
+    background-color: black;
+    color: white;
+    border-radius: 0;
+    height: 40px;
+    margin-top: 15px;
+    border-radius: 20px;
+}

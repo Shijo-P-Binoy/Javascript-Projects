@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+</head>
+
+<body>
+    <form>
+
+        <label for="ida">Amount:</label>
+        <br>
+        <input type="text" name="a" id="ida">
+        <br>
+        <label for="idr">Rate Of Interest:</label>
+        <br>
+        <input type="text" name="r" id="idr">
+        <br>
+        <label for="idy">Time In Years:</label>
+        <br>
+        <input type="text" name="t" id="idy">
+        <br>
+        <button type="button" onclick="getemi()">Submit</button><br>
+        <input type="text" id="emi" /><br>
+
+    </form>
+    <script src="emi.js"></script>
+
+
+</body>
+
+</html>
