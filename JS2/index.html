@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+    }
+
+    body {
+        background-color: #222;
+        /* background: rgb(63, 94, 251);
+        background: linear-gradient(135deg, rgba(63, 94, 251, 1) 0%, rgba(70, 252, 76, 1) 100%);
+        height: 100dvh; */
+    }
+
+    .todo_app {
+        width: 100%;
+        max-width: 540px;
+        margin: 100px auto 20px;
+        padding: 40px 30px 70px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .todo_app h2 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #002765;
+    }
+
+    .todo_app h2 img {
+        width: 30px;
+        margin-left: 10px;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #edeef0;
+        border-radius: 30px;
+        margin-bottom: 2rem;
+        padding-left: 1cqw;
+    }
+
+    .row input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .row button {
+        border: none;
+        outline: none;
+        background: linear-gradient(90deg, #153677, #4e085f);
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 40px;
+        padding: 15px 20px;
+        font-weight: 600;
+    }
+
+    ul li {
+        list-style: none;
+        font-size: 17px;
+        padding: .5rem 0;
+        user-select: none;
+        cursor: pointer;
+        display: flex;
+        gap: .8rem;
+        align-items: center;
+        position: relative;
+        text-transform: capitalize;
+        font-weight: 600;
+
+    }
+
+    ul li::before {
+        display: block;
+        content: "";
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-image: url(images/unchecked.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+    ul li.checked {
+        color: #4e085f;
+        text-decoration: line-through;
+    }
+
+    ul li.checked::before {
+        background-image: url(images/checked.png);
+    }
+
+    ul li #delete_btn {
+        color: #ff0000;
+        margin-left: auto;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    ul li #delete_btn:hover {
+        font-size: 20px;
+        color: #da0303;
+    }
+
+    ul li #edit_btn {
+        color: #269604;
+        margin-left: auto;
+        font-size: 18px;
+        padding: 0 10px;
+        cursor: pointer;
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    ul li #edit_btn:hover {
+        font-size: 20px;
+        color: #165503;
+    }
+</style>
+
+<body>
+
+
+    <div class="todo_app">
+        <h2>To-Do List <img src="images/icon.png" alt=""></h2>
+        <div class="row">
+            <input type="text" id="input_box" placeholder="Enter you task">
+            <button onclick="addTask()">Add</button>
+        </div>
+        <ul id="list">
+            <!-- tasks will be displayed here -->
+        </ul>
+    </div>
+
+
+
+    <script>
+
+        const inputBox = document.getElementById("input_box");
+        const listContainer = document.getElementById("list");
+
+        function addTask() {
+            if (inputBox.value === "") {
+                alert("Please enter a task");
+
+            } else {
+                let li = document.createElement("li");
+                li.textContent = inputBox.value;
+                listContainer.appendChild(li);
+
+                // Create an edit button
+                let editBtn = document.createElement("i");
+                editBtn.id = "edit_btn";
+                editBtn.className = "fa-solid fa-pen";
+                li.appendChild(editBtn);
+
+                // Create a close (delete) button
+                let deleteBtn = document.createElement("i");
+                deleteBtn.id = "delete_btn";
+                deleteBtn.className = "fa-solid fa-trash";
+                li.appendChild(deleteBtn);
+            }
+
+            inputBox.value = "";
+            saveData();
+        }
+
+
+        listContainer.addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
+                e.target.classList.toggle("checked");
+
+            } else if (e.target.id === "delete_btn") {
+                e.target.parentElement.remove();
+                saveData();
+
+            } else if (e.target.id === "edit_btn") {
+                editTask(e.target.parentElement);
+                saveData();
+
+            } else if (e.target.tagName !== "I") {
+                // This condition ensures that clicking on the LI (but not on the buttons) toggles the checked state
+                e.target.parentElement.classList.toggle("checked");
+            }
+        }, false);
+
+
+
+        function saveData() {
+            localStorage.setItem("taskData", listContainer.innerHTML);
+        }
+
+        function showTask() {
+            listContainer.innerHTML = localStorage.getItem("taskData");
+        }
+
+        function editTask(li) {
+            let currentText = li.firstChild.textContent;
+            inputBox.value = currentText;
+            li.remove();
+        }
+
+        showTask();
+
+    </script>
+</body>
+
+</html>
