@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palindrome Checker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Doodle+Shadow&display=swap');
+
+    body {
+      background-color: #f8f8f8;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .con {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #input,
+    button {
+      border: none;
+      line-height: 2rem;
+      padding: 0 .5rem;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 15px 15px 30px #bebebe,
+        -15px -15px 30px #ffffff;
+      transition: 0.2s ease-in-out;
+      font-weight: 500;
+    }
+
+    #input::placeholder {
+      color: #ccc;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Palindrome Checker</h1>
+  <div class="con">
+    <input id="input" type="text" placeholder="Type a something">
+    <button onclick="check()">Check</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

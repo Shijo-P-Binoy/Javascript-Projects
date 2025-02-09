@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Flipper</title>
+    <style>
+      #green {
+        background-color: limegreen;
+      }
+
+      #red {
+        background-color: red;
+      }
+
+      #blue {
+        background-color: blue;
+      }
+
+      button {
+        background-color: black;
+        border-radius: 5px;
+        border: none;
+        font-size: large;
+        color: white;
+        padding: .5rem;
+        box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5), inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 3px 4px -1px rgba(255, 255, 255, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.8), inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
+      }
+      .con{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+
+    </style>
+  </head>
+
+  <body>
+    <h1>Color Flipper</h1>
+    <div class="con">
+        <button id="green" onclick="setColor('limegreen')">Green</button>
+        <button id="red" onclick="setColor('red')">Red</button>
+        <button id="blue" onclick="setColor('blue')">Blue</button>
+        <button onclick="randomColor('')">Random</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
