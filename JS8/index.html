@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background: rgb(63, 94, 251);
+        background: linear-gradient(135deg, rgba(63, 94, 251, 1) 0%, rgba(70, 252, 76, 1) 100%);
+        height: 100dvh; */
+        }
+
+        .container {
+            background: #fff;
+            width: 400px;
+            padding: 25px 35px;
+            border-radius: 10px;
+        }
+
+        .container p {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .container input {
+            height: 50px;
+            width: 100%;
+            border: 1px solid #494eea;
+            border-radius: 5px;
+            outline: 0;
+            padding: 10px;
+            margin: 10px 0 20px;
+        }
+
+        .container button {
+            width: 100%;
+            height: 50px;
+            background: #494eea;
+            color: #fff;
+            border: 0;
+            outline: 0;
+            border-radius: 5px;
+            box-shadow: 0 10px 10px rgb(0, 0, 0, 0.1);
+            cursor: pointer;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        #qrImgBox {
+            width: 200px;
+            border-radius: 5px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s;
+        }
+
+        #qrImgBox img {
+            width: 100%;
+            padding: 10px;
+        }
+
+        #qrImgBox.showImg {
+            max-height: 300px;
+            margin: 10px auto;
+            border: 1px solid #d1d1d1;
+        }
+
+        .error {
+            animation: shake 0.5s linear 10;
+            border: 2px solid red !important;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-2px);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            75% {
+                transform: translateX(2px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <p>Enter your text or URL</p>
+        <input type="text" placeholder="Text or URL" id="qrText">
+
+        <div id="qrImgBox">
+            <img src="" alt="" id="qrImg">
+        </div>
+
+        <button onclick="generateQR()">Generate QR Code</button>
+    </div>
+
+    <script>
+
+        let qrImgBox = document.getElementById('qrImgBox');
+        let qrImg = document.getElementById('qrImg');
+        let qrText = document.getElementById('qrText');
+
+
+        function generateQR() {
+
+            if (qrText.value.length > 0) {
+
+                qrImg.src = " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+                qrImgBox.classList.add("showImg");
+            }else{
+                console.log("running");
+                qrText.classList.add('error');
+                setTimeout(()=>{
+                    qrText.classList.remove("error");
+                },1000);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
