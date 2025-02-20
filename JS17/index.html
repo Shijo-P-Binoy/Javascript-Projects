@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Toggle</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+        transition: all 0.9s;
+    }
+
+    body {
+        background-color: #222;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        background: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel {
+        width: 900px;
+        display: flex;
+        overflow-x: scroll;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none
+    }
+
+    .carousel div {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1rem;
+        padding: 10px;
+        flex: none;
+    }
+
+    .carousel div span {
+
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+
+    .carousel div span img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+
+
+    .carousel div img:hover {
+        transform: scale(1.1);
+    }
+
+    .btnContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin: 1rem;
+        width: 50px;
+    }
+
+    .btnContainer:hover {
+        background-color: rgb(53, 53, 53);
+    }
+
+    #backBtn,
+    #nextBtn {
+        width: 100%;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+
+        <div class="btnContainer"><img src="media/left-arrow.png" alt="" id="backBtn"></div>
+        <div class="carousel">
+            <div>
+                <span>
+                    <img src="media/pic1.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic2.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic3.jpeg" alt="">
+                </span>
+
+            </div>
+            <div>
+                <span>
+                    <img src="media/pic4.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic5.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic6.jpeg" alt="">
+                </span>
+
+            </div>
+            <div>
+                <span>
+                    <img src="media/pic7.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic8.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic9.jpeg" alt="">
+                </span>
+
+            </div>
+            <div>
+                <span>
+                    <img src="media/pic10.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic11.jpeg" alt="">
+                </span>
+                <span>
+                    <img src="media/pic12.jpeg" alt="">
+                </span>
+
+            </div>
+        </div>
+        <div class="btnContainer"><img src="media/right-arrow.png" alt="" id="nextBtn"></div>
+
+    </div>
+    <script>
+
+        let scrollContainer = document.querySelector(".carousel");
+        let nextBtn = document.getElementById("nextBtn");
+
+        scrollContainer.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.style.scrollBehavior= "auto";
+
+        });
+
+        nextBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior= "smooth";
+            scrollContainer.scrollLeft += 900;
+        });
+
+        backBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior= "smooth";
+            scrollContainer.scrollLeft -= 900;
+        });
+    </script>
+</body>
+
+</html>
