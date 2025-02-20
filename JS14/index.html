@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Toggle</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+    }
+
+    body {
+        background-color: #222;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        background: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inputBox{
+        background: #fff;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 300px auto;
+        display: flex;
+        align-items: center;
+    }
+
+
+    .inputBox input{
+        width: 100%;
+        padding: 10px 0;
+        border: 0;
+        outline: 0;
+        font-size: 24px;
+        color: #222;
+    }
+
+    .inputBox img{
+        width: 35px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="inputBox">
+            <input type="password" placeholder="Password" id="password">
+            <img src="media/eye-close.png" alt="eyeClose" id="eyeicon">
+        </div>
+    </div>
+
+    <script>
+
+        let eyeIcon = document.getElementById("eyeicon");
+        let password = document.getElementById("password");
+
+        eyeIcon.onclick = function(){
+            if(password.type === "password"){
+                password.type = "text";
+                eyeIcon.src = "media/eye-open.png";
+            }else{
+                password.type = "password";
+                eyeIcon.src = "media/eye-close.png";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
