@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launching Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+        }
+
+        /* body {
+            background: #667db6;
+            background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
+        } */
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url(images/bg1.jpg);
+            background-position: center;
+            background-size: cover;
+            padding: 0 8%;
+        }
+
+        .content {
+            top: 50%;
+            position: absolute;
+            transform: translateY(-50%);
+            color: #fff;
+
+        }
+
+        .content h1 {
+            font-size: 64px;
+            font-weight: 600;
+        }
+
+        .content h1 span {
+            color: #ff3735;
+        }
+
+        .content button {
+            background: transparent;
+            border: 2px solid #fff;
+            outline: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        .content button img {
+            width: 15px;
+        }
+
+
+        .launch_time {
+            display: flex;
+
+        }
+
+        .launch_time div {
+            flex-basis: 100px;
+            text-align: left;
+        }
+
+        .launch_time div p {
+            font-size: 60px;
+            margin-bottom: -5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .rocket {
+            width: 250px;
+            position: absolute;
+            right: 10%;
+            bottom: 0;
+            animation: rocket 4s linear infinite;
+        }
+
+        @keyframes rocket {
+            0% {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            100% {
+                bottom: 105%;
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="content">
+            <p>Website Is Under Maintenace</p>
+            <h1>We're <span>Launching</span> Soon</h1>
+
+            <div class="launch_time">
+                <div>
+                    <p id="days">00</p>
+                    <span>Days</span>
+                </div>
+                <div>
+                    <p id="hours">00</p>
+                    <span>Hours</span>
+                </div>
+                <div>
+                    <p id="minutes">00</p>
+                    <span>Minutes</span>
+                </div>
+                <div>
+                    <p id="seconds">00</p>
+                    <span>Seconds</span>
+                </div>
+            </div>
+            <button type="button">Learn More <img src="images/triangle.png" alt=""></button>
+        </div>
+        <img src="images/rocket.png" alt="" class="rocket">
+    </div>
+
+    <script>
+
+        var countDownDate = new Date("Dec 31,2024 00:00:00").getTime();
+        var x = setInterval(() => {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Convert numbers to strings and use padStart
+            document.getElementById("days").innerHTML = days.toString().padStart(2, "0");
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, "0");
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, "0");
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, "0");
+
+            if (distance < 0) {
+
+                document.getElementById("days").innerHTML = "00"
+                document.getElementById("hours").innerHTML = "00"
+                document.getElementById("minutes").innerHTML = "00"
+                document.getElementById("seconds").innerHTML = "00"
+            }
+
+        }, 1000);
+
+    </script>
+</body>
+
+</html>
