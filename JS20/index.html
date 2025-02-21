@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text To Speech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+        }
+
+        /* body {
+            background: #667db6;
+            background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
+        } */
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #010758, #490d61);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container h1 {
+            font-size: 45px;
+            font-weight: 500;
+            margin-top: -50px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        .container h1 span {
+            color: #ff2963;
+        }
+
+        .container textarea {
+            width: 600px;
+            height: 250px;
+            background: #403d84;
+            color: #fff;
+            font-size: 15px;
+            border: 0;
+            outline: none;
+            padding: 20px;
+            border-radius: 10px;
+            resize: none;
+            margin-bottom: 30px;
+        }
+
+        .container textarea::placeholder {
+            color: #fff;
+            font-size: 16px;
+        }
+
+
+        .row {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .row button {
+            background: #ff2963;
+            color: #fff;
+            padding: 10px 30px;
+            border: 0;
+            outline: none;
+            border-radius: 35px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .row button img {
+            width: 16px;
+
+        }
+
+        .row select {
+            flex: 1;
+            color: #fff;
+            background: #403d84;
+            height: 45px;
+            padding: 0 20px;
+            outline: 0;
+            border: 0;
+            border-radius: 35px;
+            appearance: none;
+            background-image: url(media/down-arrow.png);
+            background-size: 25px;
+            background-position: 95% 50%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Text To Speech <span>Converter</span></h1>
+        <textarea name="" placeholder="Write anything here..." id=""></textarea>
+        <div class="row">
+            <select></select>
+            <button><img src="media/play.png" alt="">Listen</button>
+        </div>
+
+    </div>
+
+    <script>
+
+        let speech = new SpeechSynthesisUtterance();
+
+        let voices = [];
+
+        let voiceSelect = document.querySelector("select");
+
+        var i = 0;
+
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            speech.voice = voices[0];
+
+            voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
+        };
+
+        voiceSelect.addEventListener("change", () => {
+            speech.voice = voices[voiceSelect.value];
+        });
+
+        document.querySelector("button").addEventListener("click", () => {
+            speech.text = document.querySelector("textarea").value;
+            // Clear any pending utterances
+            console.log(i++);
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(speech);
+        })
+
+    </script>
+</body>
+
+</html>
