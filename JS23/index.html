@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+        }
+
+        /* body {
+            background: #667db6;
+            background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
+        } */
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #C33764;
+            background: -webkit-linear-gradient(to right, #1D2671, #C33764);
+            background: linear-gradient(to right, #1D2671, #C33764);
+
+        }
+
+
+        .calendar {
+            width: 300px;
+            height: 250px;
+            background-color: #ffffff00;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .left,
+        .right {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 25px;
+        }
+
+        .right {
+            width: 42%;
+            background-color: #f4351e;
+            color: #fff;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 1rem; 
+        }
+
+        .left {
+            background-color: #fff;
+            width: 58%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        #date{
+            font-size: 100px;
+            line-height: 90px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #year{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="calendar">
+            <div class="left">
+                <p id="date">01</p>
+                <p id="day">Sunday</p>
+            </div>
+            <div class="right">
+                <p id="month">January</p>
+                <p id="year">2024</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const date = document.getElementById("date");
+        const day = document.getElementById("day");
+        const month = document.getElementById("month");
+        const year = document.getElementById("year");
+
+        const today = new Date();
+
+
+        date.innerHTML = today.getDate().toString().padStart(2, "0");
+        day.innerHTML = today.toLocaleString('default', { weekday: 'long' });
+        month.innerHTML = today.toLocaleString('default', { month: 'long' });
+        year.innerHTML = today.getFullYear();
+
+    </script>
+
+</body>
+
+</html>
