@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Box</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Raleway", sans-serif;
+        }
+
+        /* body {
+            background: #667db6;
+            background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
+        } */
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000046;
+            background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+            background: linear-gradient(to right, #1CB5E0, #000046);
+        }
+
+        .selector {
+            width: 350px;
+        }
+
+        #selectField {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+            background: rgb(255, 255, 255, 0.7);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #selectField img {
+            width: 12px;
+            transition: transform 0.5s;
+        }
+
+
+        #list {
+            width: 100%;
+            background: rgb(255, 255, 255, 0.7);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .options {
+            width: 100%;
+            padding: 15px;
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            box-sizing: border-box;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .options img {
+            width: 25px;
+        }
+
+        .options:hover {
+            background: rgb(255, 255, 255, 0.7);
+        }
+
+
+        .hide{
+            visibility: hidden;
+        }
+
+        .rotate{
+            transform: rotate(180deg);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="selector">
+            <div id="selectField">
+                <p id="selectText">Select Social Media</p>
+                <img id="arrowIcon" src="images/arrow.png" alt="">
+            </div>
+
+            <ul id="list">
+                <li class="options">
+                    <img src="images/facebook.png" alt="">
+                    <p>Facebook</p>
+                </li>
+                <li class="options">
+                    <img src="images/instagram.png" alt="">
+                    <p>Instagram</p>
+                </li>
+                <li class="options">
+                    <img src="images/youtube.png" alt="">
+                    <p>Youtube</p>
+                </li>
+                <li class="options">
+                    <img src="images/pinterest.png" alt="">
+                    <p>Pinterest</p>
+                </li>
+                <li class="options">
+                    <img src="images/whatsapp.png" alt="">
+                    <p>Whatsapp</p>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        var selectField = document.getElementById("selectField");
+        var selectText = document.getElementById("selectText");
+        var options = document.getElementsByClassName("options");
+        var list = document.getElementById("list");
+        var arrowIcon = document.getElementById("arrowIcon");
+
+
+        selectField.onclick = function () {
+            list.classList.toggle("hide");
+            arrowIcon.classList.toggle("rotate")
+        }
+
+
+        for (option of options) {
+            option.onclick = function () {
+                selectText.innerHTML = this.textContent;
+                list.classList.toggle("hide");
+            arrowIcon.classList.toggle("rotate")
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
